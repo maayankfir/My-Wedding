@@ -14,7 +14,7 @@ class Dashboard extends Component {
         height: 650,
         width: 480,
       }}/>
-
+      
     </div>
     )
   }

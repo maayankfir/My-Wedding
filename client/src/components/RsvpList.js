@@ -1,45 +1,50 @@
 import React, { Component } from 'react';
+import ShowAdmin from './ShowAdmin'
 
-class RsvpList extends Component {
-  state = {
-      rsvpList: [],
-      rsvpListLoaded: false
-    }
 
-  ComponentDidMount() {
-    fetch('/rsvps')
-    .then(res => res.json())
-    .then(console.log)
-    // .then(res => {
-    //   this.setState({
-    //     rsvpList: res,
-    //     rsvpListLoaded: true
-    //   })
-    // })
-    .catch(err => console.log(err))
-  }
+const RsvpList = (props) => {
 
-  renderRsvps= () => {
-      return this.state.rsvpList.map( rsvp => {
-        return (
-          <div className="rsvp" key={rsvp.id}>
-            <p> {rsvp.firstname} </p>
-            <p> {rsvp.lastname} </p>
-          </div>
-        )
-      })
-  }
-
-  render() {
-    console.log("from list", this.state);
     return (
-      <div className="rsvp-list">
-      {(this.state.rsvpListLoaded) ? (this.renderRsvps())
-         : <p> Loading ... </p> }
+      <div>
+      
+      <table className="ui celled striped padded table">
+        <tbody>
+          <tr>
+            <th>
+              <h3 className="ui center aligned header">
+                First Name
+              </h3>
+            </th>
+            <th>
+              <h3 className="ui center aligned header">
+                Last Name
+              </h3>
+            </th>
+            <th>
+              <h3 className="ui center aligned header">
+                How Many
+              </h3>
+            </th>
+            <th>
+              <h3 className="ui center aligned header">
+                RSVP
+              </h3>
+            </th>
+            <th>
+              <h3 className="ui center aligned header">
+                EMAIL
+              </h3>
+            </th>
+          </tr>
+          {props.rsvpList.map( rsvp => {
+        return <ShowAdmin key={rsvp.id} rsvp={rsvp}/>
+      })}
+        </tbody>
+      </table>
       </div>
     );
   }
 
-}
+
 
 export default RsvpList;

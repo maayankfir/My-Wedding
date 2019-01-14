@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import './App.css';
 import { Link, Redirect, Route, Switch} from 'react-router-dom';
 import Auth from './modules/Auth'
-import RsvpList from './components/RsvpList'
+import RsvpContainer from './containers/RsvpContainer'
 import RegisterForm from './components/RegisterForm'
 import LoginForm from './components/LoginForm'
 import Dashboard from './components/Dashboard'
@@ -107,10 +107,7 @@ class App extends Component {
             <Route exact path="/dash" component={Dashboard} />
             <Route exact path="/about" component={AboutUs} />
             <Route exact path="/rsvp" component={() => <Rsvp userObj={this.state.userObj} /> } />
-            <Route exact path="/admin" component={RsvpList} />
-
-
-
+            <Route exact path="/admin" component={RsvpContainer} />
 
       </div>
 

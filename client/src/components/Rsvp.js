@@ -3,12 +3,11 @@ import { Input, Row } from 'react-materialize'
 // import NavBar from './NavBar'
 class Rsvp extends Component {
 
-
     state = {
         user_id: this.props.userObj.id,
         event_id: 1,
-        firstName: '',
-        lastName: '',
+        firstname: '',
+        lastname: '',
         attendees: 0,
         comment: '',
         rsvp: false,
@@ -36,11 +35,10 @@ class Rsvp extends Component {
             },
         body: JSON.stringify({ rsvp: this.state })
           })
-        // .then(res => res.json())
         .then(
         this.setState({
-            firstName: '',
-            lastName: '',
+            firstname: '',
+            lastname: '',
             attend: '',
             attendees: 0,
             comment: '',
@@ -58,8 +56,8 @@ class Rsvp extends Component {
             <div className="container form-container">
               <h3 className="headings">RSVP</h3>
                 <Row>
-                  <h4> First Name </h4> <Input s={6} validate value={this.state.firstName} name="firstName" onChange={this.handleInputChange}></Input>
-                  <h4> Last Name </h4> <Input s={6} validate value={this.state.lastName} name="lastName" onChange={this.handleInputChange}></Input>
+                  <h4> First Name </h4> <Input validate value={this.state.firstname} name="firstname" onChange={this.handleInputChange}></Input>
+                  <h4> Last Name </h4> <Input validate value={this.state.lastname} name="lastname" onChange={this.handleInputChange}></Input>
                 </Row>
 
                 <Row>
