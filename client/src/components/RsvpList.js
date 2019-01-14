@@ -1,26 +1,25 @@
 import React, { Component } from 'react';
 
 class RsvpList extends Component {
-  constructor(){
-    super()
-    this.state = {
-      rsvpList: null,
+  state = {
+      rsvpList: [],
       rsvpListLoaded: false
     }
-  }
 
   ComponentDidMount() {
-    fetch('http://localhost:3001/rsvps')
+    fetch('/rsvps')
     .then(res => res.json())
-    .then(res => {
-      this.setState({
-        rsvpList: res,
-        rsvpListLoaded: true
-      })
-    }).catch(err => console.log(err))
+    .then(console.log)
+    // .then(res => {
+    //   this.setState({
+    //     rsvpList: res,
+    //     rsvpListLoaded: true
+    //   })
+    // })
+    .catch(err => console.log(err))
   }
 
-  renderRsvps(){
+  renderRsvps= () => {
       return this.state.rsvpList.map( rsvp => {
         return (
           <div className="rsvp" key={rsvp.id}>
@@ -32,10 +31,10 @@ class RsvpList extends Component {
   }
 
   render() {
-    console.log(this.state);
+    console.log("from list", this.state);
     return (
       <div className="rsvp-list">
-      {(this.state.rsvpListLoaded) ? this.renderRsvps()
+      {(this.state.rsvpListLoaded) ? (this.renderRsvps())
          : <p> Loading ... </p> }
       </div>
     );

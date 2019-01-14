@@ -1,6 +1,6 @@
 class RsvpsController < ApiController
   # before_action :require_login
-
+  # skip_before_action :verify_authenticity_token
   def index
     @rsvps = Rsvp.all
     render json: @rsvps
@@ -13,15 +13,17 @@ class RsvpsController < ApiController
 
 
   def create
-    @rsvp = Post.new(rsvp_params)
+    @rsvp = Rsvp.new(rsvp_params)
     if @rsvp.save
       render json: @rsvp
+    else
+      render json: @rsvp.errors, status: :unprocessable_entity
     end
   end
 
   private
 
   def rsvp_params
-    params.require(:rsvp).permit(:firstname, :lastname, :attendees, :comment, :rsvp)
+    params.require(:rsvp).permit(:firstname, :lastname, :attendees, :comment, :rsvp, :user_id, :event_id)
   end
 end

@@ -11,10 +11,10 @@ include Faker
 
 event = Event.create(name: 'Maayan & Itamar', date: '4th of july 2019', location: 'TLV, Isreal' )
 
-20.times do
-  User.create(
-    email: Faker::Name.first_name+"@gmail.com",
-    password: Faker::Number.number(10),
-  )
-  
+# 20.times do
+#   User.create(
+#     email: Faker::Name.first_name+"@gmail.com",
+#     password: Faker::Number.number(10),
+#   )
+
 end

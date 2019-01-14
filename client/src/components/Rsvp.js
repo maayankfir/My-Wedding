@@ -3,12 +3,15 @@ import { Input, Row } from 'react-materialize'
 // import NavBar from './NavBar'
 class Rsvp extends Component {
 
+
     state = {
+        user_id: this.props.userObj.id,
+        event_id: 1,
         firstName: '',
         lastName: '',
-        attend: false,
-        numberAttending: 0,
-        email: ''
+        attendees: 0,
+        comment: '',
+        rsvp: false,
     }
 
     handleInputChange = e => {
@@ -19,36 +22,35 @@ class Rsvp extends Component {
 
     handleAttendChange = e => {
       this.setState({
-        attend: e.target.value
+        rsvp: e.target.value
       });
     }
 
     handleFormSubmit = e => {
-      //fetch POST rsvp
       e.preventDefault()
-      fetch(`http://localhost:3000/rsvps`,{
+      fetch(`/rsvps`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         Accepts: "application/json"
             },
         body: JSON.stringify({ rsvp: this.state })
-      }).then(res => res.json())
-        .then(console.log)
-
+          })
+        // .then(res => res.json())
+        .then(
         this.setState({
             firstName: '',
             lastName: '',
             attend: '',
-            numberAttending: 0,
-            email: ''
-        })
-        console.log('this is state', this.state)
-    }
-
+            attendees: 0,
+            comment: '',
+            user_id: ''
+        }))
+      }
 
 
     render() {
+      console.log('from RSVP', this.props.userObj.id);
         return (
           <div>
 
@@ -68,12 +70,12 @@ class Rsvp extends Component {
 
                 <Row>
                   <h5>How many attendess? </h5>
-                  <Input s={6} value={this.state.numberAttending} name="numberAttending" onChange={this.handleInputChange}></Input>
+                  <Input value={this.state.attendees} name="attendees" onChange={this.handleInputChange}></Input>
                 </Row>
 
                 <Row>
-                <h4>Email </h4>
-                  <Input s={6} value={this.state.email} name="email" onChange={this.handleInputChange}></Input>
+                <h4> Any Comments? </h4>
+                  <Input value={this.state.comment} name="comment" onChange={this.handleInputChange}></Input>
                 </Row>
                 <div>
                     <button onClick={this.handleFormSubmit} > RSVP </button>

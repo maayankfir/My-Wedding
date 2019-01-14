@@ -21,10 +21,10 @@ class RegisterForm extends Component {
         <form className="form-horizontal" onSubmit={(e) => this.props.handleRegisterSubmit(e, this.state)}>
 
       <div className="form-group">
-        <label className="control-label col-sm-2">Email Address <span className="glyphicon glyphicon-user"> </span></label>
+        <label className="control-label col-sm-2">Email <span className="glyphicon glyphicon-user"> </span></label>
         <div className="col-sm-10">
         <input type="text" name="email" value={this.state.email} onChange={this.handleChange}
-          className="form-control" placeholder="Enter Your Email Here" />
+          className="form-control" placeholder="Enter Your Email" />
         </div>
       </div>
       <div className="form-group">

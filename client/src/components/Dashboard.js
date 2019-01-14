@@ -10,10 +10,10 @@ class Dashboard extends Component {
     <div>
 
     <img src={background_image} alt="" style={{
-    alignSelf: 'center',
-    height: 650,
-    width: 480,
-  }}/>
+        alignSelf: 'center',
+        height: 650,
+        width: 480,
+      }}/>
 
     </div>
     )

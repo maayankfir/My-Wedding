@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resources :users
   resources :rsvps
+  
   post "/login", to: "sessions#create"
   delete "/logout", to: "sessions#destroy"
   get "/profile", to: "users#profile"
