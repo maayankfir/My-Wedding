@@ -46,7 +46,6 @@ class Rsvp extends Component {
         }))
       }
 
-
     render() {
       console.log('from RSVP', this.props.userObj.id);
         return (
@@ -65,7 +64,7 @@ class Rsvp extends Component {
                   <Input name='group1' type='radio' value='true' onChange={this.handleAttendChange} label='Accepts' />
                   <Input name='group1' type='radio' value='false' onChange={this.handleAttendChange} label='Regretfully, declines' />
                 </Row>
-
+                
                 <Row>
                   <h5>How many attendess? </h5>
                   <Input value={this.state.attendees} name="attendees" onChange={this.handleInputChange}></Input>

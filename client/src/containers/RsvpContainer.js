@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import RsvpList from '../components/RsvpList'
+
 class RsvpContainer extends Component {
 
   state = {
@@ -15,13 +16,15 @@ class RsvpContainer extends Component {
       this.setState({
         rsvpList: data,
         rsvpListLoaded: true
+
       })
     })
     .catch(err => console.log(err))
   }
 
+
   render() {
-    console.log(this.state.rsvpList);
+  
     return (
       <div className="rsvp-list">
       {(this.state.rsvpListLoaded) ? (<RsvpList rsvpList={this.state.rsvpList}/>)
