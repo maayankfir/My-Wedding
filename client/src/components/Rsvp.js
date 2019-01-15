@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Input, Row } from 'react-materialize'
-// import NavBar from './NavBar'
+import ThanksPage from './ThanksPage'
+import { Redirect} from 'react-router-dom';
 class Rsvp extends Component {
 
     state = {
@@ -11,6 +12,7 @@ class Rsvp extends Component {
         attendees: 0,
         comment: '',
         rsvp: false,
+        toThanksPage: false
     }
 
     handleInputChange = e => {
@@ -26,7 +28,8 @@ class Rsvp extends Component {
     }
 
     handleFormSubmit = e => {
-      e.preventDefault()
+      // e.preventDefault()
+      alert('Thanks!');
       fetch(`/rsvps`, {
         method: "POST",
         headers: {
@@ -42,17 +45,21 @@ class Rsvp extends Component {
             attend: '',
             attendees: 0,
             comment: '',
-            user_id: ''
+            user_id: '',
+            toThanksPage: true
+
         }))
       }
 
     render() {
-      console.log('from RSVP', this.props.userObj.id);
+      // console.log('from RSVP', this.props.userObj.id);
+      if (this.state.toThanksPage === true) {
+        return <Redirect to='/thanks' />
+      }
         return (
           <div>
-
-          <div className="text-center">
-            <div className="container form-container">
+            <div className="text-center">
+              <div className="container form-container">
               <h3 className="headings">RSVP</h3>
                 <Row>
                   <h4> First Name </h4> <Input validate value={this.state.firstname} name="firstname" onChange={this.handleInputChange}></Input>
@@ -64,7 +71,7 @@ class Rsvp extends Component {
                   <Input name='group1' type='radio' value='true' onChange={this.handleAttendChange} label='Accepts' />
                   <Input name='group1' type='radio' value='false' onChange={this.handleAttendChange} label='Regretfully, declines' />
                 </Row>
-                
+
                 <Row>
                   <h5>How many attendess? </h5>
                   <Input value={this.state.attendees} name="attendees" onChange={this.handleInputChange}></Input>

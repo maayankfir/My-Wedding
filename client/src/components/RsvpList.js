@@ -13,8 +13,6 @@ class RsvpList extends Component {
     filterdList: this.props.rsvpList
   }
 
-
-
   // handleChange = (e) => {
   //   let newArry;
   //     // newArry = [...this.state.filterdList].filter( rsvp => {

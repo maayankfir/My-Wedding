@@ -24,7 +24,7 @@ class RsvpContainer extends Component {
 
 
   render() {
-  
+
     return (
       <div className="rsvp-list">
       {(this.state.rsvpListLoaded) ? (<RsvpList rsvpList={this.state.rsvpList}/>)

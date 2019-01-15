@@ -4,7 +4,9 @@ class RegisterForm extends Component {
 
   state = {
     email: '',
-    password: ''
+    password: '',
+    admin: null
+
   }
 
   handleChange = (e) =>{

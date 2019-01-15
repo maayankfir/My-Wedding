@@ -10,7 +10,7 @@ require 'faker'
 include Faker
 
 event = Event.create(name: 'Maayan & Itamar', date: '4th of july 2019', location: 'TLV, Isreal' )
-admin = User.create(email: 'mayankfir@gmail.com', password: 12345)
+admin = User.create(email: 'mayankfir@gmail.com', password: "12345", admin: true)
 
 # 20.times do
 #   User.create(
@@ -18,4 +18,4 @@ admin = User.create(email: 'mayankfir@gmail.com', password: 12345)
 #     password: Faker::Number.number(10),
 #   )
 
-end
+# end

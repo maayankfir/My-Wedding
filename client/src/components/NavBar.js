@@ -4,7 +4,21 @@ import { Link } from 'react-router-dom'
 class NavBar extends React.Component{
 
   isLoggedin = () => {
-    if(this.props.isUserSignIn) {
+    if (this.props.UserIsAdmin === "mayankfir@gmail.com"){
+       return (
+         <nav className="navbar navbar-inverse navbar-fixed-top">
+           <div className="container-fluid">
+             <div className="navbar-header">
+               <div className="navbar-brand">
+                <span className="margin-left">  </span> Maayan & Itamar</div>
+                <ul className="nav navbar-nav navbar-right pull-right">
+                  <li onClick={this.props.handleLogOut} > <Link to="/" > Log Out </Link></li>
+                </ul>
+           </div>
+           </div>
+         </nav>
+       )
+      } else if (this.props.isUserSignIn) {
       return (
         <nav className="navbar navbar-inverse navbar-fixed-top">
           <div className="container-fluid">
@@ -16,7 +30,7 @@ class NavBar extends React.Component{
             <ul className="nav navbar-nav">
               <li><Link to="/"> Home </Link></li>
               <li><Link to="/rsvp"> RSVP </Link></li>
-              <li><Link to="/about"> About Us </Link></li>
+              <li><Link to="/location"> Location </Link></li>
             </ul>
             <ul className="nav navbar-nav navbar-right pull-right">
             <li onClick={this.props.handleLogOut} > <Link to="/" > Log Out </Link></li>
@@ -35,7 +49,7 @@ class NavBar extends React.Component{
 
             <ul className="nav navbar-nav navbar-right pull-right">
             <li><Link to="/login"> Log In </Link></li>
-            <li><Link to="/register"> Sing Up </Link></li>
+            <li><Link to="/register"> Sign Up </Link></li>
             </ul>
           </div>
         </nav>

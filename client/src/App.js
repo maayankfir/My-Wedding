@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import CountDown from './components/CountDown';
 
 import './App.css';
 import { Link, Redirect, Route, Switch} from 'react-router-dom';
@@ -10,18 +11,17 @@ import Dashboard from './components/Dashboard'
 import Home from './components/Home'
 import Header from './components/Header'
 import Rsvp from './components/Rsvp'
-import AboutUs from './components/AboutUs'
+import Location from './components/Location'
 import NavBar from './components/NavBar'
-
+import ThanksPage from './components/ThanksPage'
 
 class App extends Component {
 
   state = {
       auth: Auth.isUserAuthenticated(),
-      userObj: {},
-      toggle: false
+      userObj: [],
+      isAdmin: ""
     }
-
 
   handleRegisterSubmit = (e, data) => {
     e.preventDefault()
@@ -34,10 +34,11 @@ class App extends Component {
     }).then(res => res.json())
     .then(res => {
       Auth.authenticateToken(res.token)
-      Auth.storeUserInfo(res.user.email, res.user.id)
+      Auth.storeUserInfo(res.user.email, res.user.id, res.user.admin)
       this.setState({
         auth: Auth.isUserAuthenticated(),
-        userObj: res.user
+        userObj: res.user,
+        isAdmin: res.user.email
       })
     }).catch(err => {
       console.log(err)
@@ -57,10 +58,11 @@ class App extends Component {
       .then(res => {
         // console.log(res)
         Auth.authenticateToken(res.token)
-        Auth.storeUserInfo(res.user.email, res.user.id)
+        Auth.storeUserInfo(res.user.email, res.user.id, res.user.admin)
         this.setState({
         auth: Auth.isUserAuthenticated(),
-        userObj: res.user
+        userObj: res.user,
+        isAdmin: res.user.email
         })
       }).catch(err => {
         console.log(err)
@@ -69,7 +71,6 @@ class App extends Component {
     }
 
     handleLogOut = () => {
-
       // debugger
       fetch('/logout', {
         method: 'DELETE',
@@ -81,92 +82,58 @@ class App extends Component {
         Auth.deauthencateToken()
         this.setState({
           auth: Auth.isUserAuthenticated(),
-          userObj: {}
+          userObj: [],
+          isAdmin: ""
         })
       }).catch(err => {
         console.log(err)
       })
     }
 
+    // renderLogIn =() => {
+    //   if (this.state.userObj.email === "mayankfir@gmail.com"){
+    //     return <Route exact path = "/admin" />
+    //   } else if (this.state.auth) {
+    //     return <Route exact path = "/login" />
+    //   } else {
+    //     <LoginForm handleLoginSubmit={this.handleLoginSubmit}/>
+    //   }
+    // }
 
   render() {
-    // console.log('from app', this.state.userObj)
+    console.log('from app', this.state.isAdmin)
     return (
       <div>
-        <NavBar isUserSignIn= {this.state.auth} handleLogOut={this.handleLogOut} />
-        <Header />
+      <NavBar isUserSignIn= {this.state.auth} UserIsAdmin={this.state.isAdmin} handleLogOut={this.handleLogOut}  />
+      <Header />
 
         <Route exact path = "/" render = {() => <Dashboard />} />
         <Route exact path = "/register" render = {() => (this.state.auth) ? (<Redirect to="/" />)
            : (<RegisterForm handleRegisterSubmit={this.handleRegisterSubmit}/>)} />
-        <Route exact path = "/login" render = {() => (this.state.auth) ? <Redirect to="/" />
-            : <LoginForm handleLoginSubmit={this.handleLoginSubmit}/>}/ >
+        <Route exact path = "/login" render = {() => {
+          if
+          ((this.state.isAdmin === "mayankfir@gmail.com") && (this.state.auth)){
+            return (<Redirect to="/admin" />)
+          } else if (this.state.auth) {
+            return <Redirect to="/" />
+          } else {
+            return <LoginForm handleLoginSubmit={this.handleLoginSubmit}/>
+          }
+        }
+      }
+      />
+
 
             <Route exact path="/logout" component={Home} />
             <Route exact path="/home" component={Home} />
             <Route exact path="/dash" component={Dashboard} />
-            <Route exact path="/about" component={AboutUs} />
+            <Route exact path="/location" component={Location} />
             <Route exact path="/rsvp" component={() => <Rsvp userObj={this.state.userObj} /> } />
             <Route exact path="/admin" component={RsvpContainer} />
-
+            <Route exact path="/thanks" component={ThanksPage} />
       </div>
 
     );
   }
 }
-export default App;
-
-// <Route exact path="/register" render = {() => (this.state.auth) ? (<Redirect to="/register" />)
-//    : (<RegisterForm handleRegisterSubmit={this.handleRegisterSubmit}/>)} />
-// </div>
-// <div>
-//   <Nav handleLogout=  {this.handleLogout} isUserSignIn = {this.state.auth} />
-//   <Route exact path = "/" render = {() => <Home userObj = {this.state.userObj} friendsList = {this.state.friendsList}/>} />
-//   <Route path = "/signup" render = {() => <SignUp createAccount = {this.createAccount}/>}/ >
-//   <Route path = "/login" render = {() => <Login handleLoginSubmit = {this.handleLoginSubmit}/>}/ >
-//   </div>
-// <Router>
-//   <div className="App">
-//     <nav className="navbar navbar-inverse navbar-fixed-top">
-//       <div className="container-fluid">
-//       <div className="navbar-header">
-//       <div className="navbar-brand">
-//       <span className="margin-left">  </span> Maayan & Itamar</div>
-//       </div>
-//       <ul className="nav navbar-nav">
-//       <li><Link to="/" > Home </Link></li>
-//       <li><Link to="/rsvp"> RSVP </Link></li>
-//       <li><Link to="/about"> About Us </Link></li>
-//       </ul>
-//       <ul className="nav navbar-nav navbar-right pull-right">
-//       <li><Link to="/login"> Log In </Link></li>
-//       <li><Link to="/register"> Sing Up </Link></li>
-//       <li><span onClick={this.handleLogOut}>
-//       <Link to="/"> Log Out </Link>
-//        </span></li>
-//       </ul>
-//   </div>
-// </nav>
-//   <Header />
-//   <Switch>
-//   <Route exact path="/rsvps" render= {() =>
-//     <RsvpList />} />
-  // <Route exact path="/register" render = {() => (this.state.auth) ? (<Redirect to="/register" />)
-  //    : (<RegisterForm handleRegisterSubmit={this.handleRegisterSubmit}/>)} />
-  //  <Route exact path="/login"
-  //   render = {() => (this.state.auth)
-  //     ? <Redirect to="/register" />
-  //     : <LoginForm handleLoginSubmit={this.handleLoginSubmit}/>}  />
-  //   <Route exact path="/"
-  //     render={() => <Dashboard />}/>
-//
-//       // <Route exact path="/home" component={Home} />
-//       // <Route exact path="/dash" component={Dashboard} />
-//       // <Route exact path="/about" component={AboutUs} />
-//       // <Route exact path="/rsvp" component={Rsvp} />
-//       // <Route exact path="/dash" component={Dashboard} />
-//       // <Route exact path="/admin" component={RsvpList} />
-//
-//       </Switch>
-
-// </Router>
+export default App
