@@ -25,6 +25,7 @@ class App extends Component {
 
   handleRegisterSubmit = (e, data) => {
     e.preventDefault()
+    alert('Welcome!')
     fetch('/users', {
       method: 'POST',
       body: JSON.stringify({ user: data }),
@@ -48,6 +49,7 @@ class App extends Component {
 
   handleLoginSubmit = (e, data) => {
     e.preventDefault()
+    alert('Welcome!')
     fetch('/login', {
       method: 'POST',
       body: JSON.stringify(data),
@@ -122,14 +124,12 @@ class App extends Component {
         }
       }
       />
-
-
             <Route exact path="/logout" component={Home} />
             <Route exact path="/home" component={Home} />
             <Route exact path="/dash" component={Dashboard} />
             <Route exact path="/location" component={Location} />
             <Route exact path="/rsvp" component={() => <Rsvp userObj={this.state.userObj} /> } />
-            <Route exact path="/admin" component={RsvpContainer} />
+            <Route exact path="/admin" component={() => <RsvpContainer userObj={this.state.userObj} />} />
             <Route exact path="/thanks" component={ThanksPage} />
       </div>
 

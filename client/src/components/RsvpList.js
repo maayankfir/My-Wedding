@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import ShowAdmin from './ShowAdmin'
 
 import 'react-table/react-table.css'
 import ReactTable from 'react-table'
@@ -10,8 +9,21 @@ class RsvpList extends Component {
   //filter by rsvp
   //count guest
   state = {
-    filterdList: this.props.rsvpList
+    filterdList: this.props.rsvpList,
+    userObj: this.props.userObj,
+    usersList: []
   }
+
+  // componentDidMount() {
+  //   fetch('http://localhost:3001/users')
+  //   .then(res => res.json())
+  //   .then(res => {
+  //     this.setState({
+  //       usersList: res
+  //     })
+  //   })
+  // }
+
 
   // handleChange = (e) => {
   //   let newArry;
@@ -31,16 +43,30 @@ class RsvpList extends Component {
   //   })
   // }
 
-render(){
 
-  // console.log(this.state.filterdList);
+
+render(){
+  let usersAccept = [...this.state.filterdList].filter(rsvp => rsvp.rsvp === true).length
+  let usersDecline = [...this.state.filterdList].filter(rsvp => rsvp.rsvp === false).length
+  let total = [...this.state.filterdList].map(rsvp => rsvp.attendees)
+  const reducer = (accumulator, currentValue) => accumulator + currentValue
+  let totalGuestsComing = total.reduce(reducer)
+  // console.log(totalGuestsComing);
+
     return (
+
       <div>
+        <p> Guests Replay: {this.state.filterdList.length}</p>
+        <p> Guests Accepted: {usersAccept}</p>
+        <p> Guests Declined: {usersDecline}</p>
+
+        <p>Total Guest Coming: {totalGuestsComing}</p>
+        <div>
         <ReactTable
           data={this.state.filterdList}
           columns={[
             {
-              Header: " First Name",
+              Header: "First Name",
               columns: [
                 {
                   Header: "sort",
@@ -53,7 +79,7 @@ render(){
               columns: [
                 {
                   Header: "sort",
-                  accessor: "firstname"
+                  accessor: "lastname"
                 }
               ]
             },
@@ -71,6 +97,7 @@ render(){
                       : 'Did not respond'
                     }
                     </span>
+
                   )
                 }
               ]
@@ -131,7 +158,7 @@ render(){
           className="-striped -highlight"
         />
         <br />
-
+        </div>
       </div>
       // <div>
       // <select onChange={this.handleChange}>
@@ -170,9 +197,7 @@ render(){
       //         </h3>
       //       </th>
       //     </tr>
-      //     {this.state.filterdList.map( rsvp => {
-      //   return <ShowAdmin key={rsvp.id} rsvp={rsvp}/>
-      // })}
+      //
       //   </tbody>
       // </table>
       // </div>

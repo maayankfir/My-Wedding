@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Input, Row } from 'react-materialize'
 import ThanksPage from './ThanksPage'
-import { Redirect} from 'react-router-dom';
+// import NavBar from './NavBar'
 class Rsvp extends Component {
 
     state = {
@@ -12,7 +12,6 @@ class Rsvp extends Component {
         attendees: 0,
         comment: '',
         rsvp: false,
-        toThanksPage: false
     }
 
     handleInputChange = e => {
@@ -28,8 +27,7 @@ class Rsvp extends Component {
     }
 
     handleFormSubmit = e => {
-      // e.preventDefault()
-      alert('Thanks!');
+      e.preventDefault()
       fetch(`/rsvps`, {
         method: "POST",
         headers: {
@@ -45,21 +43,17 @@ class Rsvp extends Component {
             attend: '',
             attendees: 0,
             comment: '',
-            user_id: '',
-            toThanksPage: true
-
+            user_id: ''
         }))
       }
 
     render() {
       // console.log('from RSVP', this.props.userObj.id);
-      if (this.state.toThanksPage === true) {
-        return <Redirect to='/thanks' />
-      }
         return (
           <div>
-            <div className="text-center">
-              <div className="container form-container">
+
+          <div className="text-center">
+            <div className="container form-container">
               <h3 className="headings">RSVP</h3>
                 <Row>
                   <h4> First Name </h4> <Input validate value={this.state.firstname} name="firstname" onChange={this.handleInputChange}></Input>
@@ -79,13 +73,14 @@ class Rsvp extends Component {
 
                 <Row>
                 <h4> Any Comments? </h4>
-                  <Input value={this.state.comment} name="comment" onChange={this.handleInputChange}></Input>
+                  <Input type="number" value={this.state.comment} name="comment" onChange={this.handleInputChange}></Input>
                 </Row>
                 <div>
-                    <button onClick={this.handleFormSubmit} > RSVP </button>
+                  <button onClick={this.handleFormSubmit} > RSVP </button>
                 </div>
                 </div>
             </div>
+              <ThanksPage firstname={this.firstname} />
             </div>
         )
     }

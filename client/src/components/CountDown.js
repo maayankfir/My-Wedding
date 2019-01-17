@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 // import './App.css';
 class CountDown extends Component {
     state = {
-               days: 0,
-               hours: 0,
-               minutes: 0,
-               seconds: 0,
+     days: 0,
+     hours: 0,
+     minutes: 0,
+     seconds: 0,
      }
      componentWillMount() {
           this.getTimeUntil(this.props.deadline);
@@ -32,19 +32,10 @@ class CountDown extends Component {
      render() {
           return(
                <div className="text-center">
-
-                    <h1 className="CountDown-days">
+                    <h2 className="CountDown-days">
                          {this.leading0(this.state.days)} Days
-                    </h1>
-                    <h3 className="CountDown-hours">
-                         {this.leading0(this.state.hours)} Hours
-                    </h3>
-                    <h3 className="CountDown-minutes">
-                         {this.leading0(this.state.minutes)} Minutes
-                    </h3>
-                    <h3 className="CountDown-seconds">
-                         {this.leading0(this.state.seconds)} Seconds
-                    </h3>
+                    </h2>
+                    <h3 className="CountDown-hours"> {this.leading0(this.state.hours)} Hours || {this.leading0(this.state.minutes)} Minutes || {this.leading0(this.state.seconds)} Seconds</h3>
                </div>
           );
      }

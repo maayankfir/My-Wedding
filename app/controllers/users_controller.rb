@@ -1,5 +1,5 @@
 class UsersController < ApiController
-  before_action :require_login, except: [:create]
+  before_action :require_login, except: [:create, :index]
   # GET /users
   def index
     @users = User.all

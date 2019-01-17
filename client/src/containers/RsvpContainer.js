@@ -16,15 +16,16 @@ class RsvpContainer extends Component {
       this.setState({
         rsvpList: data,
         rsvpListLoaded: true
-
       })
     })
     .catch(err => console.log(err))
   }
 
+  
+
 
   render() {
-
+console.log(this.props.userObj);
     return (
       <div className="rsvp-list">
       {(this.state.rsvpListLoaded) ? (<RsvpList rsvpList={this.state.rsvpList}/>)

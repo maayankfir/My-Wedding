@@ -13,9 +13,8 @@ class Dashboard extends Component {
   return (
     <div>
       <CountDown deadline={ this.state.deadline }/>
-    <img src={background_image} alt="" style={{
-      justifyContent: 'center',
-      alignItems: 'center',
+      <img src={background_image} alt="" style={{
+
       height: 650,
       width: 480,
       }}/>

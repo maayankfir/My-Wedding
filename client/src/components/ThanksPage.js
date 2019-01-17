@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 class ThanksPage extends Component {
 
   render() {
-    console.log(this.props.rsvpInfo);
+    console.log(this.props.firstname);
     return (
       <div>
         <h1> Thank you for your RSVP! </h1>
