@@ -6,6 +6,7 @@ has_secure_password
 has_secure_token :auth_token
 
 has_many :rsvps
+has_many :dotos
 has_many :events, through: :rsvps
 # validates :email, presence: true
 # VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i

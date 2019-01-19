@@ -1,5 +1,9 @@
 class UsersController < ApiController
   before_action :require_login, except: [:create, :index]
+  # validates :email, format: {
+  #   with: URI::MailTo::EMAIL_REGEXP,
+  #   message: 'Only valid emails allowed'
+  # }
   # GET /users
   def index
     @users = User.all
@@ -43,10 +47,6 @@ class UsersController < ApiController
   end
 
   private
-
-    # def set_user
-    #   @user = User.find(params[:id])
-    # end
 
     def user_params
       params.require(:user).permit(:email, :password, :admin)

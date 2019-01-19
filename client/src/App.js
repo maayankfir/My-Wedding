@@ -4,7 +4,10 @@ import CountDown from './components/CountDown';
 import './App.css';
 import { Link, Redirect, Route, Switch} from 'react-router-dom';
 import Auth from './modules/Auth'
+import AdminContainer from './containers/AdminContainer'
 import RsvpContainer from './containers/RsvpContainer'
+import TodosContainer from './containers/TodosContainer'
+
 import RegisterForm from './components/RegisterForm'
 import LoginForm from './components/LoginForm'
 import Dashboard from './components/Dashboard'
@@ -25,7 +28,7 @@ class App extends Component {
 
   handleRegisterSubmit = (e, data) => {
     e.preventDefault()
-    alert('Welcome!')
+
     fetch('/users', {
       method: 'POST',
       body: JSON.stringify({ user: data }),
@@ -43,6 +46,7 @@ class App extends Component {
       })
     }).catch(err => {
       console.log(err)
+      alert(err)
     })
     // this.props.history.push("/")
   }
@@ -92,48 +96,40 @@ class App extends Component {
       })
     }
 
-    // renderLogIn =() => {
-    //   if (this.state.userObj.email === "mayankfir@gmail.com"){
-    //     return <Route exact path = "/admin" />
-    //   } else if (this.state.auth) {
-    //     return <Route exact path = "/login" />
-    //   } else {
-    //     <LoginForm handleLoginSubmit={this.handleLoginSubmit}/>
-    //   }
-    // }
-
   render() {
-    console.log('from app', this.state.isAdmin)
+    // console.log('from app', this.state.isAdmin)
     return (
       <div>
-      <NavBar isUserSignIn= {this.state.auth} UserIsAdmin={this.state.isAdmin} handleLogOut={this.handleLogOut}  />
-      <Header />
+        <NavBar isUserSignIn= {this.state.auth} UserIsAdmin={this.state.isAdmin} handleLogOut={this.handleLogOut}  />
+        <Header />
 
-        <Route exact path = "/" render = {() => <Dashboard />} />
-        <Route exact path = "/register" render = {() => (this.state.auth) ? (<Redirect to="/" />)
-           : (<RegisterForm handleRegisterSubmit={this.handleRegisterSubmit}/>)} />
-        <Route exact path = "/login" render = {() => {
-          if
-          ((this.state.isAdmin === "mayankfir@gmail.com") && (this.state.auth)){
-            return (<Redirect to="/admin" />)
-          } else if (this.state.auth) {
-            return <Redirect to="/" />
-          } else {
-            return <LoginForm handleLoginSubmit={this.handleLoginSubmit}/>
-          }
-        }
-      }
-      />
-            <Route exact path="/logout" component={Home} />
-            <Route exact path="/home" component={Home} />
-            <Route exact path="/dash" component={Dashboard} />
-            <Route exact path="/location" component={Location} />
-            <Route exact path="/rsvp" component={() => <Rsvp userObj={this.state.userObj} /> } />
-            <Route exact path="/admin" component={() => <RsvpContainer userObj={this.state.userObj} />} />
-            <Route exact path="/thanks" component={ThanksPage} />
-      </div>
+          <Route exact path = "/" render = {() => <Dashboard />} />
+          <Route exact path = "/register" render = {() => (this.state.auth) ? (<Redirect to="/" />)
+             : (<RegisterForm handleRegisterSubmit={this.handleRegisterSubmit}/>)} />
+          <Route exact path = "/login" render = {() => {
+                if
+                ((this.state.isAdmin === "mayankfir@gmail.com") && (this.state.auth)){
+                  return (<Redirect to="/admin" />)
+                } else if (this.state.auth) {
+                  return <Redirect to="/" />
+                } else {
+                  return <LoginForm handleLoginSubmit={this.handleLoginSubmit}/>
+                }
+              }
+            }
+          />
+          <Route exact path = "/guests" render = {() => <RsvpContainer userObj={this.props.userObj} />} />
+          <Route exact path = "/todo" render = {() => <TodosContainer />} />
+          <Route exact path="/logout" component={Home} />
+          <Route exact path="/home" component={Home} />
+          <Route exact path="/dash" component={Dashboard} />
+          <Route exact path="/location" component={Location} />
+          <Route exact path="/rsvp" component={() => <Rsvp userObj={this.state.userObj} /> } />
+          <Route exact path="/admin" component={() => <AdminContainer userObj={this.state.userObj} />} />
+          <Route exact path="/thanks" component={ThanksPage} />
+          </div>
 
-    );
+      );
+    }
   }
-}
 export default App

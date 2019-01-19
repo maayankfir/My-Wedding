@@ -24,7 +24,7 @@ class LoginForm extends Component {
           <label className="control-label col-sm-2">Email <span className="glyphicon glyphicon-user"> </span></label>
           <div className="col-sm-8">
           <input type="text" name="email" value={this.state.email} onChange={this.handleChange}
-            className="form-control" placeholder="Enter Your Email" />
+            className="form-control" placeholder="Enter Your Email" required/>
           </div>
         </div>
         <br></br>
@@ -32,7 +32,7 @@ class LoginForm extends Component {
           <label className="control-label col-sm-2">Password <span className="glyphicon glyphicon-lock"> </span></label>
           <div className="col-sm-8">
           <input type="password" name="password" value={this.state.password} onChange={this.handleChange}
-            className="form-control"  placeholder="Enter Your Password" />
+            className="form-control"  placeholder="Enter Your Password" required  />
           </div>
         </div>
         <br></br>

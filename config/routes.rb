@@ -1,7 +1,12 @@
 Rails.application.routes.draw do
+  # get 'todos/index'
+  # get 'todos/create'
+  # get 'todos/update'
+  # get 'todos/destroy'
   resources :users
   resources :rsvps
-  
+  resources :todos
+
   post "/login", to: "sessions#create"
   delete "/logout", to: "sessions#destroy"
   get "/profile", to: "users#profile"

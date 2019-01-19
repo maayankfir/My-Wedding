@@ -21,15 +21,12 @@ class RsvpContainer extends Component {
     .catch(err => console.log(err))
   }
 
-  
-
-
   render() {
-console.log(this.props.userObj);
+    console.log(this.props.userObj);
     return (
       <div className="rsvp-list">
       {(this.state.rsvpListLoaded) ? (<RsvpList rsvpList={this.state.rsvpList}/>)
-         : (<p> Loading ... </p>) }
+         : ( <h2> L   O   A   D   I   N   G . . . </h2>)}
       </div>
     );
   }

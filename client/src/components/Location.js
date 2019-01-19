@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import GoogleMapReact from 'google-map-react';
 
 class Location extends Component {
-  
+
   static defaultProps = {
    center: {
      lat: 32.051047,

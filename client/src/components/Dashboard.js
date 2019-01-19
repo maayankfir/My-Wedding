@@ -6,19 +6,18 @@ import CountDown from './CountDown'
 class Dashboard extends Component {
 
   state ={
-    deadline: 'July, 4, 2019'
+    weddingDate: 'July, 4, 2019'
   }
+
   render() {
 
   return (
     <div>
-      <CountDown deadline={ this.state.deadline }/>
-      <img src={background_image} alt="" style={{
-
-      height: 650,
-      width: 480,
+      <CountDown weddingDate={this.state.weddingDate}/>
+      <img className='background-image' src={background_image} alt="" style={{
+        height: 650,
+        width: 480,
       }}/>
-
     </div>
     )
   }

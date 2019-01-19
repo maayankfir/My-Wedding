@@ -6,17 +6,23 @@ class NavBar extends React.Component{
   isLoggedin = () => {
     if (this.props.UserIsAdmin === "mayankfir@gmail.com"){
        return (
-         <nav className="navbar navbar-inverse navbar-fixed-top">
-           <div className="container-fluid">
-             <div className="navbar-header">
-               <div className="navbar-brand">
-                <span className="margin-left">  </span> Maayan & Itamar</div>
-                <ul className="nav navbar-nav navbar-right pull-right">
-                  <li onClick={this.props.handleLogOut} > <Link to="/" > Log Out </Link></li>
-                </ul>
-           </div>
-           </div>
-         </nav>
+          <nav className="navbar navbar-inverse navbar-fixed-top">
+            <div className="container-fluid">
+              <div className="navbar-header">
+                <div className="navbar-brand">
+                 <span className="margin-left">  </span> Maayan & Itamar</div>
+            </div>
+
+              <ul className="nav navbar-nav">
+                <li><Link to="/guests"> Guest list </Link></li>
+                <li><Link to="/todo"> To Do </Link></li>
+              </ul>
+              <ul className="nav navbar-nav navbar-right pull-right">
+              <li onClick={this.props.handleLogOut} > <Link to="/" > Log Out </Link></li>
+              </ul>
+            </div>
+          </nav>
+
        )
       } else if (this.props.isUserSignIn) {
       return (

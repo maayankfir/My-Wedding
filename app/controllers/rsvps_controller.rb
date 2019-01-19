@@ -7,7 +7,7 @@ class RsvpsController < ApiController
   end
 
   def show
-    rsvp = Rsvp.find(params[:id])
+    @rsvp = Rsvp.find(params[:id])
     render json: {rsvp: rsvp}
   end
 
@@ -15,6 +15,14 @@ class RsvpsController < ApiController
   def create
     @rsvp = Rsvp.new(rsvp_params)
     if @rsvp.save
+      render json: @rsvp
+    else
+      render json: @rsvp.errors, status: :unprocessable_entity
+    end
+  end
+
+  def update
+    if @rsvp.update(rsvp_params)
       render json: @rsvp
     else
       render json: @rsvp.errors, status: :unprocessable_entity

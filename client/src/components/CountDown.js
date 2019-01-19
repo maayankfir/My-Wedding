@@ -8,16 +8,16 @@ class CountDown extends Component {
      seconds: 0,
      }
      componentWillMount() {
-          this.getTimeUntil(this.props.deadline);
+          this.getTimeUntil(this.props.weddingDate);
      }
      componentDidMount() {
-          setInterval(() => this.getTimeUntil(this.props.deadline), 1000);
+          setInterval(() => this.getTimeUntil(this.props.weddingDate), 1000);
      }
      leading0(num) {
           return num < 10 ? '0' + num : num;
      }
-     getTimeUntil(deadline) {
-          const time = Date.parse(deadline) - Date.parse(new Date());
+     getTimeUntil(weddingDate) {
+          const time = Date.parse(weddingDate) - Date.parse(new Date());
           if(time < 0) {
                this.setState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
 
