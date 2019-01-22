@@ -101,6 +101,7 @@ class App extends Component {
     // console.log('from app', this.state.isAdmin)
     return (
       <div>
+        
         <NavBar isUserSignIn= {this.state.auth} UserIsAdmin={this.state.isAdmin} handleLogOut={this.handleLogOut}  />
         <Header />
 
@@ -121,7 +122,7 @@ class App extends Component {
           />
           <Route exact path = "/guests" render = {() => <RsvpContainer userObj={this.props.userObj} />} />
           <Route exact path = "/todo" render = {() => <TodosContainer />} />
-          <Route exact path="/logout" component={Home} />
+          <Route exact path="/logout" component={Dashboard} />
           <Route exact path="/home" component={Home} />
           <Route exact path="/dash" component={Dashboard} />
           <Route exact path="/location" component={Location} />

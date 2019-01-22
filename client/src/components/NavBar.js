@@ -6,6 +6,7 @@ class NavBar extends React.Component{
   isLoggedin = () => {
     if (this.props.UserIsAdmin === "mayankfir@gmail.com"){
        return (
+         <div className="navbar">
           <nav className="navbar navbar-inverse navbar-fixed-top">
             <div className="container-fluid">
               <div className="navbar-header">
@@ -22,6 +23,7 @@ class NavBar extends React.Component{
               </ul>
             </div>
           </nav>
+          </div>
 
        )
       } else if (this.props.isUserSignIn) {

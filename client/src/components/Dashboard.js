@@ -12,10 +12,10 @@ class Dashboard extends Component {
   render() {
 
   return (
-    <div>
+    <div className="">
       <CountDown weddingDate={this.state.weddingDate}/>
-  
-      <img className='background-image' src={background_image} alt="" style={{
+
+      <img className='background' src={background_image} alt="" style={{
         height: 650,
         width: 480,
       }}/>

@@ -6,7 +6,7 @@ class Venue extends Component {
   render() {
 
     return (
-      <div className="text-center">
+      <div>
         <div className="container">
           <h2>Wedding Ceremony</h2>
             <h3> Thursday, July 4, 2019</h3>

@@ -1,30 +1,33 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: "Comic Sans MS", cursive, sans-serif;
+  text-align: center;
+  font-size: 20px;
+  font-family: "Stencil Std", fantasy;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-
-}
-
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+  background-image:url('/pix/samples/bubble1.gif');
 }
 
 .header {
-  font-family: 'Indie Flower', cursive;
-   font-size: 24px; font-style: normal; font-variant: normal; font-weight: 700; line-height: 26.4px;
+  font-family: "Stencil Std", fantasy;
+   padding: 10px;
+   padding-top: 70px;
+   width: 100%;
+   background-image: url("https://lvr3z1mw4nz4ebh3q2it5ges-wpengine.netdna-ssl.com/wp-content/uploads/2017/12/wedding-packages-header-roses.jpg");
 }
 
-body, html {
-  height: 100%;
+.header-text {
+  text-align: center;
+  font-size: 40px;
+  font-weight: bold;
+  color: #020202;
 }
 
 .rsvpForm {
   width: 85%;
   margin-left: 20px;
+
 }
 
 .rsvpColumn {
@@ -100,4 +103,26 @@ button {
   opacity: 0.4;
   padding: 1%;
   margin-left: 45%;
+}
+
+.navbar {
+  font-family: 'Indie Flower', cursive;
+  font-size: 30px; font-style: normal; font-variant: normal; font-weight: 700; line-height: 26.4px;
+  width: 100%;
+  height: 60px;
+  /* background-color: #572F2F; */
+}
+
+.background {
+    padding: 10px;
+    background-repeat:no-repeat;
+    position: center;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+  }
+
+.home {
+  background-image: url("./images/IMG_2585.JPG");
 }
