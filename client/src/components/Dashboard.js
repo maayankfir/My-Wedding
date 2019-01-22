@@ -14,6 +14,7 @@ class Dashboard extends Component {
   return (
     <div>
       <CountDown weddingDate={this.state.weddingDate}/>
+  
       <img className='background-image' src={background_image} alt="" style={{
         height: 650,
         width: 480,

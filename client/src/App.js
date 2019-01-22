@@ -13,10 +13,11 @@ import LoginForm from './components/LoginForm'
 import Dashboard from './components/Dashboard'
 import Home from './components/Home'
 import Header from './components/Header'
-import Rsvp from './components/Rsvp'
+import Rsvp from './components/Rsvp/Rsvp'
 import Location from './components/Location'
+import Venue from './components/Venue'
 import NavBar from './components/NavBar'
-import ThanksPage from './components/ThanksPage'
+import ThanksPage from './components/Rsvp/ThanksPage'
 
 class App extends Component {
 
@@ -124,6 +125,7 @@ class App extends Component {
           <Route exact path="/home" component={Home} />
           <Route exact path="/dash" component={Dashboard} />
           <Route exact path="/location" component={Location} />
+          <Route exact path="/venue" component={Venue} />
           <Route exact path="/rsvp" component={() => <Rsvp userObj={this.state.userObj} /> } />
           <Route exact path="/admin" component={() => <AdminContainer userObj={this.state.userObj} />} />
           <Route exact path="/thanks" component={ThanksPage} />

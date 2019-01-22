@@ -1,15 +1,19 @@
 import React, { Component } from 'react';
 import TodoItem from './TodoItem'
-//
+
 class TodoList extends Component {
-  
+
   render() {
     return (
-      <ul className="todolist">
+    <div>
+
         {this.props.items.map(item => (
-          <TodoItem key={item.id} id={item.id} title={item.title} completed={item.done} onItemCompleted={this.props.onItemCompleted} onDeleteItem={this.props.onDeleteItem} />
+          <TodoItem key={item.id} id={item.id} title={item.title} body={item.body}
+           owner={item.owner} duedate={item.duedate}
+            onDeleteItem={this.props.onDeleteItem} />
         ))}
-      </ul>
+    
+    </div>
     );
   }
 }

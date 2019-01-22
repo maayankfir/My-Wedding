@@ -37,6 +37,7 @@ class NavBar extends React.Component{
               <li><Link to="/"> Home </Link></li>
               <li><Link to="/rsvp"> RSVP </Link></li>
               <li><Link to="/location"> Location </Link></li>
+              <li><Link to="/venue"> The Venue </Link></li>
             </ul>
             <ul className="nav navbar-nav navbar-right pull-right">
             <li onClick={this.props.handleLogOut} > <Link to="/" > Log Out </Link></li>

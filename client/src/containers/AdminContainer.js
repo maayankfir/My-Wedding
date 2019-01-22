@@ -9,7 +9,7 @@ class AdminContainer extends Component {
     console.log(this.props.userObj);
     return (
       <div className="admin">
-       
+      <h1> Hey Maayan & Itamar!</h1>
       </div>
     );
   }
