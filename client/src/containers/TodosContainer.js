@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import TodoList from '../components/Todo/TodoList'
-import { Table } from 'reactstrap';
 import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 
 class TodosContainer extends Component {
@@ -73,12 +72,12 @@ class TodosContainer extends Component {
 
   render() {
     // console.log(this.state);
+
     return (
 
-      <div className="text-center">
-        <h3 className="apptitle">Maayan & Itamar's To Do List </h3>
-
-           <Form>
+      <div className="notes" >
+           <Form className="todo">
+           <h3>Maayan & Itamar's To Do List </h3>
             <FormGroup>
             <Label for="title">Note Title</Label>
             <Input type="title"
@@ -98,6 +97,7 @@ class TodosContainer extends Component {
             <FormGroup>
             <Label for="owner">Who is in charge? </Label>
             <Input type="select" name="owner" id="owner" onChange={this.handleChange} value={this.state.owner}>
+              <option>Please choose one</option>
               <option>Maayan</option>
               <option>Itamar</option>
             </Input>
@@ -114,9 +114,7 @@ class TodosContainer extends Component {
          </FormGroup>
         </Form>
           <button className="btn btn-primary" onClick={this.handleAddItem} disabled={!this.state.title}>{"Add #" + (this.state.items.length + 1)}</button>
-          <br></br>
-          <br></br>
-          <br></br>
+
           <TodoList items={this.state.items}
            onDeleteItem={this.handleDeleteItem} />
         </div>

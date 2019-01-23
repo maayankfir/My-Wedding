@@ -6,6 +6,9 @@ class ThanksPage extends Component {
     console.log("thanks page", this.props);
     return (
       <div className="text-center">
+      <br></br>
+      <br></br>
+      <br></br>
         <h1>{this.props.username}</h1>
         <h1> Thank you for your RSVP! </h1>
           <h2> Maayan and Itamar </h2>

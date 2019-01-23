@@ -31,7 +31,7 @@ class CountDown extends Component {
      }
      render() {
           return(
-               <div className="text-center">
+               <div>
                     <h2 className="CountDown-days">
                          {this.leading0(this.state.days)} Days
                     </h2>

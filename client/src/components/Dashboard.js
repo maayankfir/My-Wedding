@@ -1,5 +1,5 @@
 import React, { PropTypes, Component } from 'react';
-import background_image from '../images/background_image.jpg'
+import two from '../images/two.JPG'
 import { Link } from 'react-router-dom'
 import CountDown from './CountDown'
 
@@ -12,13 +12,10 @@ class Dashboard extends Component {
   render() {
 
   return (
-    <div className="">
+    <div className="text-center">
+      <br></br><br></br>
       <CountDown weddingDate={this.state.weddingDate}/>
-
-      <img className='background' src={background_image} alt="" style={{
-        height: 650,
-        width: 480,
-      }}/>
+      <img className="background" src={two} alt="" />
     </div>
     )
   }

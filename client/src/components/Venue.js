@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import Header from './Header'
 class Venue extends Component {
 
 
@@ -7,6 +7,7 @@ class Venue extends Component {
 
     return (
       <div>
+        <Header />
         <div className="container">
           <h2>Wedding Ceremony</h2>
             <h3> Thursday, July 4, 2019</h3>

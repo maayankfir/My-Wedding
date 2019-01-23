@@ -20,6 +20,7 @@ class UsersController < ApiController
     @user = User.create!(user_params)
 
     if @user.save
+      # NewUserEmail.notify_user(@user.email).deliver
       render json: {token: @user.auth_token,user:{ email: @user.email, id:@user.id}}
     else
       render json: @user.errors, status: :unprocessable_entity

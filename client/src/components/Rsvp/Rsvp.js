@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Input, Row } from 'react-materialize'
 import ThanksPage from './ThanksPage'
 import { Redirect} from 'react-router-dom';
-// import NavBar from './NavBar'
+import Header from '../Header'
 class Rsvp extends Component {
 
     state = {
@@ -50,7 +50,6 @@ class Rsvp extends Component {
             comment: '',
             user_id: '',
             toThanksPage: true,
-
         }))
       }
 
@@ -62,6 +61,7 @@ class Rsvp extends Component {
         return (
 
           <div>
+          <Header />
             <div className="text-center">
             <div className="container form-container">
               <h3 className="headings">RSVP</h3>
