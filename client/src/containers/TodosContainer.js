@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import TodoList from '../components/Todo/TodoList'
-import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import { Form, FormGroup, Label, Input, Button} from 'reactstrap';
 
 class TodosContainer extends Component {
 
@@ -10,7 +10,8 @@ class TodosContainer extends Component {
     title: '',
     body: '',
     owner: '',
-    duedate: ''
+    duedate: '',
+    formIsOpen: false
   }
 }
 
@@ -30,6 +31,7 @@ class TodosContainer extends Component {
     })
   }
 
+
   handleAddItem = (e) => {
     e.preventDefault()
     var newItem = {
@@ -39,7 +41,6 @@ class TodosContainer extends Component {
         duedate: this.state.duedate,
         user_id: 1
       }
-
     fetch('/todos', {
       method: "POST",
       headers: {
@@ -53,10 +54,10 @@ class TodosContainer extends Component {
         title: "",
         body: "",
         owner: "",
-        duedate: ""
+        duedate: "",
+        formIsOpen: false
       })))
     }
-
 
   handleDeleteItem =(itemId) => {
     var updatedItems = this.state.items.filter(item => {
@@ -70,51 +71,85 @@ class TodosContainer extends Component {
     })
   }
 
+  openForm = () => {
+    if (this.state.formIsOpen === true) {
+      return (
+        <div>
+        <Form className="App">
+         <FormGroup>
+         <Label for="title">Note Title</Label>
+         <Input
+         className="input"
+         type="title"
+         name="title"
+         id="title"
+         placeholder="Write your note title here.."
+         onChange={this.handleChange} value={this.state.title} />
+         </FormGroup>
+         <FormGroup>
+         <Label for="body"> Description</Label>
+         <Input
+         className="input"
+         type="body"
+         name="body"
+         id="body"
+         placeholder="Write your note here.."
+         onChange={this.handleChange} value={this.state.body}/>
+         </FormGroup>
+         <FormGroup>
+         <Label for="owner">Who is in charge? </Label>
+         <Input
+           className="input"
+           type="select"
+           name="owner"
+           id="owner"
+           onChange={this.handleChange}
+           value={this.state.owner}>
+           <option>Please choose one</option>
+           <option>Maayan</option>
+           <option>Itamar</option>
+         </Input>
+         </FormGroup>
+         <FormGroup>
+          <Label for="duedate">To do Date </Label>
+          <Input
+           className="input"
+           type="date"
+           name="duedate"
+           id="duedate"
+           placeholder="To do Date"
+           onChange={this.handleChange} value={this.state.date}
+           />
+          </FormGroup>
+          </Form>
+
+       <Button className="input" onClick={this.handleAddItem} disabled={!this.state.title}>{"Add #" + (this.state.items.length + 1)}</Button>
+       </div>
+      )
+    } else {
+      return (
+        <div>
+        <br></br>
+        <Button className="input" onClick={this.handleClick}>Add New Task</Button>
+        </div>
+      )
+    }
+  }
+
+  handleClick = () => {
+    this.setState({
+      formIsOpen: !this.state.formIsOpen
+    })
+  }
+
   render() {
-    // console.log(this.state);
 
     return (
-
       <div className="notes" >
-           <Form className="todo">
-           <h3>Maayan & Itamar's To Do List </h3>
-            <FormGroup>
-            <Label for="title">Note Title</Label>
-            <Input type="title"
-            name="title"
-            id="title"
-            placeholder="Write your note title here.."
-            onChange={this.handleChange} value={this.state.title} />
-            </FormGroup>
-            <FormGroup>
-            <Label for="body"> Description</Label>
-            <Input type="body"
-            name="body"
-            id="body"
-            placeholder="Write your note here.."
-            onChange={this.handleChange} value={this.state.body}/>
-            </FormGroup>
-            <FormGroup>
-            <Label for="owner">Who is in charge? </Label>
-            <Input type="select" name="owner" id="owner" onChange={this.handleChange} value={this.state.owner}>
-              <option>Please choose one</option>
-              <option>Maayan</option>
-              <option>Itamar</option>
-            </Input>
-            </FormGroup>
-            <FormGroup>
-             <Label for="duedate">To do Date </Label>
-             <Input
-               type="date"
-               name="duedate"
-               id="duedate"
-               placeholder="To do Date"
-               onChange={this.handleChange} value={this.state.date}
-             />
-         </FormGroup>
-        </Form>
-          <button className="btn btn-primary" onClick={this.handleAddItem} disabled={!this.state.title}>{"Add #" + (this.state.items.length + 1)}</button>
-
+      <h1>Maayan & Itamar's To Do List </h1>
+      <br></br>
+        {this.openForm()}
+        
           <TodoList items={this.state.items}
            onDeleteItem={this.handleDeleteItem} />
         </div>

@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 class ThanksPage extends Component {
 
   render() {
-    console.log("thanks page", this.props);
+    // console.log("thanks page", this.props);
     return (
       <div className="text-center">
       <br></br>

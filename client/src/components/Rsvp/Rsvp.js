@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { Input, Row } from 'react-materialize'
-import ThanksPage from './ThanksPage'
+// import { Input, Row } from 'react-materialize'
 import { Redirect} from 'react-router-dom';
 import Header from '../Header'
+import { Row, Col, Button, Form, FormGroup, Label, Input, CustomInput } from 'reactstrap';
 class Rsvp extends Component {
 
     state = {
@@ -14,6 +14,7 @@ class Rsvp extends Component {
         comment: '',
         rsvp: false,
         toThanksPage: false,
+        // selectedOption: false
 
     }
 
@@ -26,7 +27,7 @@ class Rsvp extends Component {
     handleAttendChange = e => {
       this.setState({
         rsvp: e.target.value,
-        selectedOption: this.state.selectedOption
+        // selectedOption: this.state.selectedOption
       });
     }
 
@@ -53,46 +54,74 @@ class Rsvp extends Component {
         }))
       }
 
+      isAttend = () => {
+        if (this.state.rsvp === 'true') {
+          return (
+          <div>
+         <FormGroup>
+           <Label for="exampleNumber">How many attendess?</Label>
+           <Input
+            className="input"
+             type="number"
+             min="1"
+             name="attendees"
+             id="exampleNumber"
+             placeholder="1"
+             value={this.state.attendees}
+              onChange={this.handleInputChange} require
+              />
+             </FormGroup>
+          </div>
+        )}
+      }
+
+
     render() {
-      // console.log('from RSVP', this.props.userObj.id);
+
       if (this.state.toThanksPage === true) {
         return <Redirect to='/thanks' />
       }
         return (
-
           <div>
-          <Header />
-            <div className="text-center">
-            <div className="container form-container">
-              <h3 className="headings">RSVP</h3>
-            <Row>
-              <h4>Will you be able to attend? </h4>
-              <Input name='group1' type='radio' value='true' onChange={this.handleAttendChange} label='Accepts' />
-              <Input name='group1' type='radio' value='false' onChange={this.handleAttendChange} label='Regretfully, declines' />
+          <Header/>
+          <Form className="rsvpForm">
+          <FormGroup>
+            <Label for="exampleCheckbox">Will you be able to attend?</Label>
+            <div>
+              <CustomInput type="radio" id="exampleCustomRadio" value='true' onChange={this.handleAttendChange} label='Accepts' name="customRadio" />
+              <CustomInput type="radio" id="exampleCustomRadio2" value='false' onChange={this.handleAttendChange} label='Regretfully, declines' name="customRadio"  />
+            </div>
+          </FormGroup>
+
+            {this.isAttend()}
+
+            <Row form>
+              <Col md={6}>
+                <FormGroup>
+                  <Label for="firstname">First Name</Label>
+                  <Input className="input" type="firstname" value={this.state.firstname} onChange={this.handleInputChange} name="firstname" id="firstname" placeholder="" require/>
+                </FormGroup>
+              </Col>
+              <Col md={6}>
+                <FormGroup>
+                  <Label for="lastname">Last Name</Label>
+                  <Input className="input" type="lastname" value={this.state.lastname} onChange={this.handleInputChange} name="lastname" id="lastname" placeholder="" require/>
+                </FormGroup>
+              </Col>
             </Row>
+            <FormGroup>
+              <Label for="comments">Any Comments?</Label>
+              <Input className="input" type="textarea" value={this.state.comment} name="comment" onChange={this.handleInputChange} id="exampleText" />
+            </FormGroup>
 
-              <div>
-              <Row>
-                <h4> First Name </h4> <Input validate value={this.state.firstname} name="firstname" onChange={this.handleInputChange} require></Input>
-                <h4> Last Name </h4> <Input validate value={this.state.lastname} name="lastname" onChange={this.handleInputChange} require></Input>
-              </Row>
-              <Row>
-                <h5>How many attendess? </h5>
-                <Input type="number" min="1" value={this.state.attendees} name="attendees" onChange={this.handleInputChange} require></Input>
-              </Row>
-              <Row>
-              <h4> Any Comments? </h4>
-                <Input type="text" value={this.state.comment} name="comment" onChange={this.handleInputChange}></Input>
-              </Row>
-              <div>
-                <button onClick={this.handleFormSubmit} > RSVP </button>
-              </div>
-              </div>
+            <FormGroup check row>
+             <Col>
+               <Button className="button" onClick={this.handleFormSubmit} >RSVP</Button>
+             </Col>
+             </FormGroup>
 
-              </div>
-            </div>
-
-            </div>
+          </Form>
+          </div>
         )
     }
 }

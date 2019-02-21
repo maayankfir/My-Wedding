@@ -3,7 +3,6 @@ import itamar from './itamar.jpeg'
 import maayan from './maayan.jpeg'
 import { Card, CardDeck, CardImg, CardText, CardBody,
   CardTitle, CardSubtitle, Button, Row } from 'reactstrap';
-
 class TodoItem extends Component {
 
   deleteItem = (e) =>{
@@ -12,7 +11,8 @@ class TodoItem extends Component {
 
   render() {
     return (
-      <CardDeck>
+    <div>
+    <CardDeck>
       <Row>
       <Card className="card">
       <CardSubtitle>{this.props.owner}</CardSubtitle>
@@ -21,13 +21,12 @@ class TodoItem extends Component {
          <CardTitle>Title: {this.props.title}</CardTitle>
          <CardText>Description: {this.props.body}</CardText>
          <CardText>Due to: {this.props.duedate}</CardText>
-         <Button onClick={this.deleteItem}><span className="glyphicon glyphicon-trash"></span></Button>
+         <Button onClick={()=> this.props.onDeleteItem(this.props.id)}><span className="glyphicon glyphicon-trash"></span></Button>
        </CardBody>
        </Card>
        </Row>
      </CardDeck>
-
-
+    </div>
     )
   }
 }

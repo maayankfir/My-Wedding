@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import RsvpContainer from './RsvpContainer'
-import TodosContainer from './TodosContainer'
+
 import CountDown from '../components/CountDown'
-import { Redirect, Route, Link} from 'react-router-dom';
+import { Link} from 'react-router-dom';
 
 class AdminContainer extends Component {
   state ={

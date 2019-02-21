@@ -11,7 +11,7 @@ class NavBar extends React.Component{
             <div className="container-fluid">
               <div className="navbar-header">
                 <div className="navbar-brand">
-                 <span className="margin-left">  </span> Maayan & Itamar</div>
+                 <span className="margin-left">  </span> Maayan & Itamar </div>
             </div>
 
               <ul className="nav navbar-nav">

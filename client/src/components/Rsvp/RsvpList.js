@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import 'react-table/react-table.css'
 import ReactTable from 'react-table'
-import matchSorter from 'match-sorter'
 
 class RsvpList extends Component {
   //filter by rsvp
@@ -22,7 +21,8 @@ render(){
 
     return (
 
-      <div>
+      <div className="input">
+      <br></br>
       <br></br>
         <p> Guests Replay: {this.state.filterdList.length}</p>
         <p> Guests Accepted: {usersAccept}</p>

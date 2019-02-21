@@ -2,16 +2,16 @@ import React, { Component } from 'react';
 import Header from './Header'
 class Venue extends Component {
 
-
   render() {
 
     return (
       <div>
         <Header />
         <div className="container">
-          <h2>Wedding Ceremony</h2>
-            <h3> Thursday, July 4, 2019</h3>
-            <h3> 7:30 PM</h3>
+          <h2 className="ceremony" >Wedding Ceremony</h2>
+            <h3 className="ceremony"> Thursday, July 4, 2019</h3>
+            <h3 className="ceremony"> 7:30 PM</h3>
+
           <div id="myCarousel" className="carousel slide" data-ride="carousel">
 
             <ol className="carousel-indicators">
@@ -24,23 +24,23 @@ class Venue extends Component {
 
           <div className="carousel-inner">
             <div className="item active">
-              <img src='http://raytlv.co.il/wp-content/uploads/2016/06/15037096_659981677496968_3491117520158390605_n.jpg' alt="" />
+              <img src="https://www.raytlv.co.il/media/source/ray-130.jpg" alt="" />
             </div>
 
             <div className="item">
-              <img src='http://raytlv.co.il/wp-content/uploads/2016/06/ray-130.jpg' alt="" />
+              <img src='https://www.raytlv.co.il/media/source/Liad-Kobi-27.7.17-%C2%A9-LUZ-943.jpg' alt="" />
             </div>
 
             <div className="item">
-              <img src='http://raytlv.co.il/wp-content/uploads/2016/06/ray-12.jpg' alt="" />
+              <img src='https://www.raytlv.co.il/media/source/A-196-of-237.jpg' alt="" />
             </div>
 
             <div className="item">
-              <img src='http://raytlv.co.il/wp-content/uploads/2016/06/18527825_1686738568010489_6837615404330720698_n.jpg' alt="" />
+              <img src='https://www.raytlv.co.il/media/source/18485536_1686734851344194_6400496544741256077_n.jpg' alt="" />
             </div>
 
             <div className="item">
-              <img src='http://raytlv.co.il/wp-content/uploads/2016/06/18485536_1686734851344194_6400496544741256077_n.jpg' alt="" />
+              <img src='https://www.raytlv.co.il/media/source/Liad-_-Kobi-27.7.17-%C2%A9-LUZ-1313.jpg' alt="" />
             </div>
           </div>
 

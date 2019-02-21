@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import CountDown from './components/CountDown';
+// import CountDown from './components/CountDown';
 
-// import './App.css';
-import { Link, Redirect, Route, Switch} from 'react-router-dom';
+import { Redirect, Route} from 'react-router-dom';
 import Auth from './modules/Auth'
 import AdminContainer from './containers/AdminContainer'
 import RsvpContainer from './containers/RsvpContainer'
@@ -12,7 +11,6 @@ import RegisterForm from './components/RegisterForm'
 import LoginForm from './components/LoginForm'
 import Dashboard from './components/Dashboard'
 import Home from './components/Home'
-import Header from './components/Header'
 import Rsvp from './components/Rsvp/Rsvp'
 import Location from './components/Location'
 import Venue from './components/Venue'
